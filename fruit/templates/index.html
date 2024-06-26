@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>Quality Check</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;1,300&display=swap" rel="stylesheet">
+ <link href="css/styles.css" rel="stylesheet" media="screen">
+ <link href="css/print.css" rel="stylesheet" media="print"> 
+
+
+<script>
+
+const apiUrl = 'https://blynk.cloud/external/api/get?token=dpP_wP6k10MwpDFRANrNEzr2GNVjs5t0&v12'; // Replace with your API URL
+
+function fetchDataAndUpdate() {
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const dataContainer = document.getElementById('data-container');
+            if (data < 240) {
+                dataContainer.textContent = 'Hardware update : No pesticide found';
+            } else {
+                dataContainer.textContent = 'Hardware update : Pesticides found';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+// Call the function initially
+fetchDataAndUpdate();
+
+// Update the data every second
+setInterval(fetchDataAndUpdate, 1000);
+
+
+</script>
+
+
+
+<style>
+
+/*
+    Johnson County Community College
+    Summer 2018
+
+     Web 110 Final Project
+     The Internet of Things - Research Topic
+     Author: Mehmet Acikgoz
+     Date:  July 26, 2018
+
+     Filename: styles.css
+*/
+
+/*Global settings*/
+* { box-sizing: border-box; } 
+header, main, nav, footer, figure, figcaption, aside, section, article { display: block; }
+
+body {  font-family: 'Montserrat', sans-serif;  background-color: #B8DBED; 
+}
+/*style for the wrapper*/
+#wrapper {  width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+			background-color: #90C7E3;
+            background-image: linear-gradient(to bottom, #FFFFFF, #90C7E3);
+			border: 1px solid #000033;
+		   	box-shadow:3px 3px 3px #333333;	
+} 
+
+h2 { font-size: 1.1em; }
+ 
+header { line-height: 300%;
+		 background: url("{{ url_for('static', filename='fruit.jpg') }}") no-repeat center center;
+		 background-size: cover;		 
+		 padding: 10% 0 4% 0;
+}
+header p{ font-size: 22px; color: #fff; text-align: center; font-weight: 600;}
+header h1{ padding: 0;}
+h1 { text-align: center;
+     /*font-size: 250%;*/
+	 font-size: 3em; 
+	 padding: 2% 0;
+	 margin: 0;
+	 color: white;
+	 }
+
+	 h2{ text-align: left;
+		
+		font-size: 2em; 
+		padding: 2% 0;
+		margin: 0;
+		color: rgb(30, 30, 30);
+		}
+nav { float: left;
+      width: 20%;
+	  font-size: 120%;
+	  padding: 2%;
+	  padding-left: 1%;
+	  font-weight: bold;
+}	  
+nav ul { list-style-type: none;  font-size: 1.0em; }
+nav a { text-decoration: none; line-height: 200%;}
+nav a:link { color: #330000; }
+nav a:visited { color: #003300; }
+nav a:hover { color: #996600; }
+.btn{ height: 40px; border:1px solid #ddd; border-radius:10px; padding: 10px 40px;}
+
+/* image file on the home page*/
+#home_p {  	background-image: url(../images/news-networking-iot-city-istock.png);
+			background-repeat: no-repeat;	
+            height: 400px;
+			background-size: 100% 100%;
+			margin-left:20%;				
+}
+
+/* image file on the research page*/
+#research_p {	background-image: url(../images/IoT_how.jpg);
+			    background-repeat: no-repeat;	
+                height: 385px;
+			    background-size: 100% 100%;
+}
+
+main {  width: 100%;
+        padding-top:1%;
+        padding-right: 3%;
+		padding-left: 3%;
+		padding-bottom: 2%;
+        margin-left: 0%;	
+		border: 1px;
+		background-color: #FFFFFF;
+		line-height: 200%;
+}
+.box{padding:30px 75px; border:1px solid #ddd; border-radius: 10px; margin-top: 40px;}
+.box-wrap{ display:flex; justify-content: space-between;}
+.box-1{padding:20px 20px; border:1px solid #ddd; border-radius: 10px; margin-top: 40px; max-width: 50%; margin: 10px;}
+.box-1 h2{font-size: 1.5em; }
+ol, ul {padding-left: 3%; }
+ul {padding-left:0%; display: flex; justify-content: space-around; }
+ul.list li{ float: left; width:auto; padding: 5px 30px; text-align: center; list-style:none; background: #eee; margin: 0 5px;}
+
+/* horizontal nav bar at the end of pages */
+.bottomNav {
+	list-style-type: none;  
+	text-align: center;
+	text-decoration: none;	
+}
+
+footer { text-align: center;
+         font-size: 80%;
+		 font-style: italic;
+		 color: #003300;
+		 padding: 2%;
+	     clear: both; 
+}
+
+
+.reference  { /*Reference page links Decoration*/
+		    display: block;
+		    list-style-type: none;
+		    margin-bottom: 10px;
+		    font-weight: bold;
+		    font-size: 0.9em;		
+}
+
+/* Settings for the tablets */	
+@media only screen and (max-width: 64em){
+	body { margin: 0; 
+	}
+	#wrapper { min-width: 0; 
+	           width: auto; 
+	           box-shadow: none; 
+	           border: none; 
+	}
+    h1 { margin: 0; }
+	main { width: 100%; margin-left: 0; }
+	nav { float: none; 
+	      width: auto; 
+	      margin-top: 0;	
+	      text-align: center;
+		  padding: 0;
+	      padding-top: 0.5em;
+	}
+	nav ul { padding-left: 0; }
+	nav li { display: inline; padding:0.25em 0.75em; }
+	#home_p, #research_p { margin-left: 0; height: 200px; }
+	footer { margin-left: 0; }	
+}
+
+/* Settings for the mobile devices */	
+@media only screen and (max-width: 37.5em){
+	main { padding:0.1em 1em; 
+        font-size: 90%; 
+    } 
+	ol, ul { padding-left: 1.3em; }
+
+	h1 { font-size: 2em; }
+	nav { padding: 0; }
+	nav li { display: block; 
+	         margin: 0; 
+	         /*border-bottom: 2px solid #330000; */
+	}
+	nav a { display: block; }
+	#home_p, #research_p { display: none; background-image: none; height: 0; }
+}
+
+	
+table, td, th { border: 2px solid black;
+        border-collapse: collapse;	
+		width:100%;		
+		line-height: 100%;
+}
+table caption { text-align: left;}
+
+td, th { padding: 0.5em;}
+
+td { text-align: right; }
+
+.text { text-align: left; }
+
+tr:nth-of-type(odd) { background: #F5FAFC; }
+
+
+</style>
+
+
+
+
+</head>
+<body>
+<div id="wrapper">
+  <header>
+    <h1>Check the Quality of mangoes</h1>
+	<p>Embrace excellence, prioritize well-being, and safeguard your health with style!</p>
+  </header>
+  <!--<nav>
+    <ul>
+	 <li><a href="index.html">Home</a></li>
+     <li><a href="research.html">Research</a></li>
+     <li><a href="references.html">References</a></li>
+     <li><a href="contact.html">Contact</a></li>
+	</ul>
+   </nav>
+   <div id="home_p">
+   </div>-->
+<main>
+    <div class="box">
+	<h2>The Internet of Things</h2>
+    <p>The Internet of Things (IoT) is the network of physical devices, vehicles, home appliances, and other items
+	embedded with electronics, software, sensors, actuators, and connectivity which enables these things to connect
+	and exchange data, creating opportunities for more direct integration of the physical world into
+	computer-based systems, resulting in efficiency improvements, economic benefits, and reduced human exertions.</p>
+	<h2 >The Internet of Things</h2>
+	<div class="box-wrap">
+	
+		
+        <div class="box-1">
+            <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+                <input type="file" id="fileInput" name="fileInput" accept="image/jpeg, image/png, image/jpg">
+                <button type="submit">Upload</button>
+            </form>
+            {% if predicted_class %}
+
+			<h2>The predicted class is : {{ predicted_class }} </h2>
+            
+            {% endif %}
+			
+			<div id="data-container"></div>
+        </div>
+        
+        
+        
+	
+		
+	</div>
+	<div class="box-1">
+		<p>The Internet of Things (IoT) is the network of physical devices, vehicles, home appliances, and other items
+			embedded with electronics, software, sensors, actuators, and connectivity which enables these things to connect
+			and exchange data, creating opportunities for more direct integration of the physical world into
+			computer-based systems, resulting in efficiency improvements, economic benefits, and reduced human exertions.</p>
+	</div>
+	</div>
+
+	<h2>Diseases in Mango</h2>
+	<ul class="list">
+	   <li>Alternaria</li>
+	   <li>Anthracnose</li>
+	   <li>Black Mould Rot</li>
+	   <li>Stem and Rot</li>
+	   	   
+	</ul>
+	<div class="box-wrap">
+	<div class="box-1">
+		<img src="{{ url_for('static', filename='Alternaria.jpg') }}" width="100%"/>
+		<h2>Alternaria</h2>
+		<p>The fungus (germ) causes black spots and post harvest fruit rot during storage. The germ infects the fruit during growing stage and becomes inactive. When fruit is harvested and as the fruit continues to ripen, the germ resumes growth resulting in an active rot. </p>
+
+	</div>
+
+	<div class="box-1">
+		<img src="{{ url_for('static', filename='Anthracnose.jpg') }}" width="100%"/>
+		<h2>Anthracnose</h2>
+		<p>Mango anthracnose disease (MAD) is a worldwide disease that is extremely destructive to mangoes before and after harvest. The disease damages the infected mango trees, leading to low yield and quality of fruits. </p>
+
+	</div>
+
+	<div class="box-1">
+		<img src="{{ url_for('static', filename='blackmoult.jpg') }}" width="100%"/>
+		<h2>Black Mould Rot</h2>
+		<p>Greenish-black or grayish-green mould growth on the fruit's surface. As the disease progresses, the infected areas become sunken or depressed, often with a soft, decayed texture beneath the mouldy surface. Affected fruits may emit a characteristic musty or moldy smell. </p>
+
+	</div>
+	<div class="box-1">
+		<img src="{{ url_for('static', filename='stemandrot.jpg') }}" width="100%"/>
+		<h2>Stem and Rot</h2>
+		<p>A dark rot develops from the stem end as fruit ripen after harvest. A dark brown to black rot begins at the stem end as a dark brown ring and the rot proceeds towards the other end. The rot produces dark streaking of the water-conducting tissues (this symptom distinguishes stem end rot from anthracnose). </p>
+	</div>
+</div>
+
+	<div>
+		<ul class="bottomNav">
+		  <li><a href="#top">Back to top</a></li>
+	    </ul>
+    </div>
+</div>	
+   </main>
+   <footer>Copyright &copy; 2024</footer>
+</div>
+</body>
+</html>
